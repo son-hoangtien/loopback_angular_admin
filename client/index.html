@@ -1,5 +1,36 @@
-<head><title>LoopBack</title></head>
+<!DOCTYPE html>
+<html ng-app="pdadmin">
+<head>
+  <title></title>
+  <title ng-bind="$state.current.title">Peddler Son.H</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="son.hoang">
+
+  <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../node_modules/angular-ui-notification/dist/angular-ui-notification.css">
+
+  <!-- libs script should be here -->
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="../node_modules/angular-resource/angular-resource.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
+
+</head>
 <body>
-  <h1>LoopBack Rocks!</h1>
-  <p>Hello World... </p>
+  <div ng-include="'../app/partials/header.html'"></div>
+  <div id="wrap">
+    <div ui-view>
+
+    </div>
+  </div>
+  <!-- app's script should be here -->
+  <script src="../index.js"></script>
+  <script src="../app/lp-service.js"></script>
+  <script src="../app/auth-controller.js"></script>
+  <script src="../app/user-controller.js"></script>
+
 </body>
+</html>

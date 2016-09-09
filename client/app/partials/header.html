@@ -1,0 +1,29 @@
+<header>
+<nav class="navbar navbar-default navbar-static-top" id="menu-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-home bj_color_light_green"></i> Peddler Admin</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ui-sref-active="active text-bold">
+          <a ui-sref="app.user">User</a>
+        </li>
+        <li ui-sref-active="active text-bold">
+          <a ui-sref="app.product">Product</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ui-sref-active="active text-bold" ng-show="!showMenu">
+          <a ui-sref="app.login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>
