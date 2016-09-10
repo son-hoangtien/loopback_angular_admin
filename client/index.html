@@ -8,7 +8,9 @@
   <meta name="author" content="son.hoang">
 
   <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../node_modules/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="../node_modules/angular-ui-notification/dist/angular-ui-notification.css">
+  <link rel="stylesheet" type="text/css" href="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
 
   <!-- libs script should be here -->
   <script src="../node_modules/angular/angular.js"></script>
@@ -17,20 +19,21 @@
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../node_modules/angular-ui-notification/dist/angular-ui-notification.js"></script>
+  <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+  <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
 
 </head>
 <body>
-  <div ng-include="'../app/partials/header.html'"></div>
   <div id="wrap">
-    <div ui-view>
-
-    </div>
+    <div ui-view></div>
   </div>
   <!-- app's script should be here -->
   <script src="../index.js"></script>
   <script src="../app/lp-service.js"></script>
   <script src="../app/auth-controller.js"></script>
   <script src="../app/user-controller.js"></script>
+  <script src="../app/product-controller.js"></script>
+  <script src="../app/utils.js"></script>
 
 </body>
 </html>

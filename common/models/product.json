@@ -7,17 +7,20 @@
     "validateUpsert": true
   },
   "properties": {
-    "title": {
+    "name": {
       "type": "string",
       "required": true
     },
     "price": {
-      "type": "number"
+      "type": "string"
     },
     "description": {
       "type": "string"
     },
-    "producer": {
+    "madein": {
+      "type": "string"
+    },
+    "status": {
       "type": "string"
     }
   },

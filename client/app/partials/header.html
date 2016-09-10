@@ -19,8 +19,11 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ui-sref-active="active text-bold" ng-show="!showMenu">
+        <li ui-sref-active="active text-bold" ng-show="!is_authenticated">
           <a ui-sref="app.login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+        </li>
+        <li ng-show="is_authenticated">
+          <a href="javascript:void(0)" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> LogOut</a>
         </li>
       </ul>
     </div>

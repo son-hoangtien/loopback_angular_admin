@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="createProductModalLable" ng-show="!isEdit">New Product</h4>
+    <h4 class="modal-title" id="createProductModalLable" ng-show="isEdit">Edit Product</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label  class="col-sm-2 control-label"
+          for="productName">Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control"
+            id="productName" placeholder="product name" ng-model="product.name"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"
+          for="productPrice" >Price</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control"
+            id="productPrice" placeholder="price" ng-model="product.price"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"
+          for="productPrice" >Description</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" placeholder="description" ng-model="product.description"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"
+          for="madein" >Made in</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control"
+            id="madein" placeholder="madein" ng-model="product.madein"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"
+          for="status" >Status</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control"
+            id="status" placeholder="status in/out stock" ng-model="product.status"/>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default"  ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="newProduct()" ng-show="!isEdit">Create</button>
+    <button type="button" class="btn btn-primary" ng-click="editProduct()" ng-show="isEdit">Edit</button>
+  </div>
+</div>

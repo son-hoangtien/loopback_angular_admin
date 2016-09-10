@@ -2,7 +2,8 @@ var pdadmin = angular.module('pdadmin', [
   'ngResource',
   'ui.router',
   'ui-notification',
-  'lbServices'
+  'lbServices',
+  'ui.bootstrap'
 ]);
 
 pdadmin.config(['LoopBackResourceProvider', function(LoopBackResourceProvider) {
@@ -21,32 +22,43 @@ pdadmin.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', functio
   // Set up the states
   $stateProvider
     .state('app', {
+      url: '/',
       templateUrl: '../app/partials/home.html',
       title: 'Peddler Admin',
-      abstract: true,
       controller: 'AuthCtrl'
     })
     .state('app.user', {
-      url: '/user',
+      url: 'user',
       title: 'Peddler Admin - User',
       templateUrl: '../app/partials/user.html',
+      authenticate: true,
       controller: 'UserCtrl'
     })
     .state('app.product', {
-      url: '/product',
+      url: 'product',
       title: 'Peddler Admin - Product',
+      authenticate: true,
       templateUrl: '../app/partials/product.html',
+      controller: 'ProductCtrl'
     })
     .state('app.login', {
-      url: '/login',
+      url: 'login',
       title: 'Peddler Admin - Login',
-      templateUrl: '../app/partials/login.html',
+      templateUrl: '../app/partials/login.html'
+    })
+    .state('app.logout', {
+      url: 'logout',
+      title: 'Peddler Admin - LogOut'
     })
 
 }]);
 
-pdadmin.run(['$http', '$rootScope', '$state', function ($http, $rootScope, $state) {
+pdadmin.run(['$http', '$rootScope', '$state', 'User', function ($http, $rootScope, $state, User) {
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
     $rootScope.$state = $state; // dynamic page title
+    if (toState.authenticate && !User.isAuthenticated()){
+      $state.transitionTo('app.login');
+      event.preventDefault();
+    }
   });
 }]);

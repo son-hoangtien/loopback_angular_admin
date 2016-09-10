@@ -1,1 +1,15 @@
-login.html
+<div>
+  <h3>Login to Peddler Admin Management System</h3>
+</div>
+<form role="form" class="login-form">
+  <div class="form-group">
+    <label class="sr-only" for="form-email">Email</label>
+    <input type="email" name="email" placeholder="Email..." class="form-email form-control" id="form-email" required ng-model="user.email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="form-password">Password</label>
+    <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password" required ng-model="user.password">
+  </div>
+  <p class="text-right text-error hide" >Email or Password not match!</p>
+  <button type="submit" class="btn btn-success center-block" ng-click="login()">Login</button>
+</form>
