@@ -11,7 +11,8 @@ pdadmin.controller('UserCtrl', ['$scope', 'Notification', 'User', '$uibModal', f
   $scope.search = {
     by: '',
     page: 1,
-    term: ''
+    term: '',
+    sort: ''
   }
   $scope.limit = 2;
   $scope.total = 0;
@@ -62,6 +63,7 @@ pdadmin.controller('UserCtrl', ['$scope', 'Notification', 'User', '$uibModal', f
   $scope.search = function () {
     var search_filter;
     // init data
+    $scope.search.sort = $scope.search.sort || 'ASC';
     if (!$scope.search.by) {
       search_filter = {
         by: 'username',
@@ -88,6 +90,7 @@ pdadmin.controller('UserCtrl', ['$scope', 'Notification', 'User', '$uibModal', f
     var filter = {
       where: where,
       limit: $scope.limit,
+      order: search_filter.by + ' ' + $scope.search.sort,
     }
     if ($scope.search.page && $scope.search.page > 1) {
       filter.skip = ($scope.search.page-1) * $scope.limit

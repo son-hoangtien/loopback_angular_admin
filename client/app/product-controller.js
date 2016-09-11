@@ -11,7 +11,8 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
   $scope.search = {
     by: '',
     page: 1,
-    term: ''
+    term: '',
+    sort: ''
   }
   $scope.limit = 2;
   $scope.total = 0;
@@ -62,6 +63,7 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
   $scope.search = function () {
     var search_filter;
     // init data
+    $scope.search.sort = $scope.search.sort || 'ASC';
     if (!$scope.search.by) {
       search_filter = {
         by: 'name',
@@ -71,12 +73,10 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
     } else {
       search_filter = angular.copy($scope.search);
     }
-
     var searchTerm = {
       like: search_filter.term
     };
     var where = {};
-
     if (search_filter.by === 'name') {
       where = {
         name: searchTerm
@@ -97,16 +97,14 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
         madein: searchTerm
       }
     }
-
     var filter = {
       where: where,
       limit: $scope.limit,
+      order: 'name ' + $scope.search.sort,
     }
-
     if ($scope.search.page && $scope.search.page > 1) {
       filter.skip = ($scope.search.page-1) * $scope.limit
     }
-
     Product.find({
       filter: filter
     }, function (data) {

@@ -3,24 +3,27 @@
     <h3 class="col-md-12">Products <button class="pull-right btn btn-success" ng-click="openModal()">New Product</button></h3>
   </div>
   <div>
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label class="col-md-2 control-label" for="searchBy">Search by: </label>
-        <div class="col-md-3">
-          <select class="  form-control" id="searchBy" name="searchBy" ng-model="search.by" ng-change="search()">
-            <option value="" disabled="" selected="selected" style="display: none;" class=""> --- Select a term --- </option>
-            <option value="name">Name</option>
-            <option value="price">Price</option>
-            <option value="status">Status</option>
-            <option value="madein">Made in</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <input type="search" class="form-control" placeholder="search term ..." ng-change="search()" ng-model="search.term" ng-disabled="!search.by">
-        </div>
+    <form class="form form-inline">
+      <div class="form-group pull-left">
+        <label for="searchBy" class="">Search by</label>
+        <select class="form-control" id="searchBy" name="searchBy" ng-model="search.by" ng-change="search()">
+          <option value="" disabled="" selected="selected" style="display: none;" class=""> --- Select a term --- </option>
+          <option value="name">Name</option>
+          <option value="price">Price</option>
+          <option value="status">Status</option>
+          <option value="madein">Made in</option>
+        </select>
+        <input type="search" class="form-control" placeholder="search term ..." ng-change="search()" ng-model="search.term" ng-disabled="!search.by">
+      </div>
+      <div class="form-group pull-right">
+        <label for="sortBy">Sort by </label>
+        <select class="form-control" id="sortBy" name="sortBy" ng-model="search.sort" ng-change="search()" ng-selected="search.sort">
+          <option value="ASC">AZ</option>
+          <option value="DESC">ZA</option>
+        </select>
       </div>
     </form>
-
+    <br/><br/>
     <table class="table table-striped table-bordered datatable table-responsive">
       <thead>
         <tr>
