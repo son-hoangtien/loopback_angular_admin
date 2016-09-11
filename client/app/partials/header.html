@@ -23,6 +23,9 @@
           <a ui-sref="app.login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
         </li>
         <li ng-show="is_authenticated">
+          <a><span class="glyphicon glyphicon-user"><i> {{username}}</i></span></a>
+        </li>
+        <li ng-show="is_authenticated">
           <a href="javascript:void(0)" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> LogOut</a>
         </li>
       </ul>
