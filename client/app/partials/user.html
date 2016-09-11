@@ -1,1 +1,45 @@
-<div>user coming here</div>
+<div>
+  <div class="row">
+    <h3 class="col-md-12">Users <button class="pull-right btn btn-success" ng-click="openModal()">New User</button></h3>
+  </div>
+  <div>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-md-2 control-label" for="searchBy">Search by: </label>
+        <div class="col-md-3">
+          <select class="  form-control" id="searchBy" name="searchBy" ng-model="search.by" ng-change="search()">
+            <option value="" disabled="" selected="selected" style="display: none;" class=""> --- Select a term --- </option>
+            <option value="username">Username</option>
+            <option value="email">Email</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <input type="search" class="form-control" placeholder="search term ..." ng-change="search()" ng-model="search.term" ng-disabled="!search.by">
+        </div>
+      </div>
+    </form>
+
+    <table class="table table-striped table-bordered datatable table-responsive">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users">
+          <td class="col-md-3">{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>
+            <a class="btn btn-info" ng-click="editUser($index, user)"><i class="fa fa-edit "></i></a>
+            <a class="btn btn-danger" ng-click="deleteUser($index, user)"><i class="fa fa-trash-o "></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <ul uib-pagination items-per-page="limit" total-items="total" ng-model="search.page" ng-change="search()"></ul>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,11 @@
-/*Product Controller*/
-
+/**
+ * [description] Product Controller
+ * @param  {[type]} $scope       [description]
+ * @param  {[type]} Notification [description]
+ * @param  {[type]} Product      [description]
+ * @param  {Array}  $uibModal    [description]
+ * @return {[type]}              [description]
+ */
 pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibModal', function($scope, Notification, Product, $uibModal) {
   $scope.products = [];
   $scope.search = {
@@ -9,7 +15,6 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
   }
   $scope.limit = 2;
   $scope.total = 0;
-
   $scope.init = function () {
     // get total products
     Product.count(function(total) {
@@ -18,7 +23,6 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
     //get products
     $scope.search();
   }
-
   $scope.openModal = function() {
     var modalProduct = $uibModal.open({
       templateUrl: '../app/partials/product-modal.html',
@@ -26,10 +30,9 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
     });
     modalProduct.result.then(function (newProduct) {
       // handle newProduct there
-      $scope.search();
+      $scope.init();
     });
   };
-
   $scope.deleteProduct = function (index, product) {
     var confirmModal = $uibModal.open({
       templateUrl: '../app/partials/confirm.html',
@@ -43,7 +46,6 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
       }
     });
   };
-
   $scope.editProduct = function (index, product) {
     var modalProduct = $uibModal.open({
       templateUrl: '../app/partials/product-modal.html',
@@ -57,7 +59,6 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
       Notification.success('Edit successfully!');
     });
   };
-
   $scope.search = function () {
     var search_filter;
     // init data
@@ -112,12 +113,18 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
       $scope.products = data;
     });
   };
-
   $scope.init();
 }]);
 
+/**
+ * [description] New Product Controller
+ * @param  {[type]} $scope            [description]
+ * @param  {[type]} $uibModalInstance [description]
+ * @param  {[type]} Product           [description]
+ * @param  {Object} Notification)     [description]
+ * @return {[type]}                   [description]
+ */
 pdadmin.controller('NewProductCtrl', ['$scope', '$uibModalInstance', 'Product', 'Notification', function($scope, $uibModalInstance, Product, Notification) {
-
   $scope.product = {
     name: '',
     price: '',
@@ -125,11 +132,9 @@ pdadmin.controller('NewProductCtrl', ['$scope', '$uibModalInstance', 'Product', 
     madein: '',
     status: ''
   }
-
   $scope.cancel = function() {
     $uibModalInstance.dismiss('cancel');
   };
-
   $scope.newProduct = function () {
     Product.create($scope.product, function(product) {
       Notification.success('Created!');
@@ -139,9 +144,16 @@ pdadmin.controller('NewProductCtrl', ['$scope', '$uibModalInstance', 'Product', 
       Notification.error('Something wrong!')
     })
   };
-
 }]);
 
+/**
+ * [description] Edit Product Controller
+ * @param  {[type]} $scope            [description]
+ * @param  {[type]} $uibModalInstance [description]
+ * @param  {[type]} Product           [description]
+ * @param  {[type]} product           [description]
+ * @return {[type]}                   [description]
+ */
 pdadmin.controller('EditProductCtrl', ['$scope', '$uibModalInstance', 'Product', 'product', function ($scope, $uibModalInstance, Product, product) {
   $scope.isEdit = true;
   $scope.product = angular.copy(product);
@@ -152,5 +164,4 @@ pdadmin.controller('EditProductCtrl', ['$scope', '$uibModalInstance', 'Product',
     $scope.product.$save();
     $uibModalInstance.close($scope.product);
   };
-
 }])
