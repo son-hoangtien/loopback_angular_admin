@@ -6,16 +6,16 @@
     <form class="form form-inline">
       <div class="form-group pull-left">
         <label for="searchBy" class="">Search by</label>
-        <select class="form-control" id="searchBy" name="searchBy" ng-model="search.by" ng-change="search()">
+        <select class="form-control" id="searchBy" name="searchBy" ng-model="searchParams.by" ng-change="search()">
           <option value="" disabled="" selected="selected" style="display: none;" class=""> --- Select a term --- </option>
           <option value="username">Username</option>
           <option value="email">Email</option>
         </select>
-        <input type="search" class="form-control" placeholder="search term ..." ng-change="search()" ng-model="search.term" ng-disabled="!search.by">
+        <input type="search" class="form-control" placeholder="search term ..." ng-change="search()" ng-model="searchParams.term" ng-disabled="!searchParams.by">
       </div>
       <div class="form-group pull-right">
         <label for="sortBy">Sort by </label>
-        <select class="  form-control" id="sortBy" name="sortBy" ng-model="search.sort" ng-change="search()" ng-selected="search.sort">
+        <select class="  form-control" id="sortBy" name="sortBy" ng-model="searchParams.sort" ng-change="search()" ng-selected="searchParams.sort">
           <option value="ASC">AZ</option>
           <option value="DESC">ZA</option>
         </select>
@@ -42,7 +42,7 @@
       </tbody>
     </table>
     <div class="text-center">
-      <ul uib-pagination items-per-page="limit" total-items="total" ng-model="search.page" ng-change="search()"></ul>
+      <ul uib-pagination items-per-page="limit" total-items="total" ng-model="searchParams.page" ng-change="search()"></ul>
     </div>
   </div>
 </div>

@@ -8,13 +8,13 @@
  */
 pdadmin.controller('UserCtrl', ['$scope', 'Notification', 'User', '$uibModal', function($scope, Notification, User, $uibModal) {
   $scope.users = [];
-  $scope.search = {
+  $scope.searchParams = {
     by: '',
     page: 1,
     term: '',
-    sort: ''
+    sort: 'ASC'
   }
-  $scope.limit = 2;
+  $scope.limit = 10;
   $scope.total = 0;
   $scope.init = function () {
     // get total users
@@ -63,15 +63,15 @@ pdadmin.controller('UserCtrl', ['$scope', 'Notification', 'User', '$uibModal', f
   $scope.search = function () {
     var search_filter;
     // init data
-    $scope.search.sort = $scope.search.sort || 'ASC';
-    if (!$scope.search.by) {
+    $scope.searchParams.sort = $scope.searchParams.sort || 'ASC';
+    if (!$scope.searchParams.by) {
       search_filter = {
         by: 'username',
         page: 1,
         term: ''
       };
     } else {
-      search_filter = angular.copy($scope.search);
+      search_filter = angular.copy($scope.searchParams);
     }
     var searchTerm = {
       like: search_filter.term
@@ -90,10 +90,10 @@ pdadmin.controller('UserCtrl', ['$scope', 'Notification', 'User', '$uibModal', f
     var filter = {
       where: where,
       limit: $scope.limit,
-      order: search_filter.by + ' ' + $scope.search.sort,
+      order: search_filter.by + ' ' + $scope.searchParams.sort,
     }
-    if ($scope.search.page && $scope.search.page > 1) {
-      filter.skip = ($scope.search.page-1) * $scope.limit
+    if ($scope.searchParams.page && $scope.searchParams.page > 1) {
+      filter.skip = ($scope.searchParams.page-1) * $scope.limit
     }
     User.find({
       filter: filter

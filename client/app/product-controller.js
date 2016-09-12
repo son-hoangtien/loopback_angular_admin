@@ -8,13 +8,13 @@
  */
 pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibModal', function($scope, Notification, Product, $uibModal) {
   $scope.products = [];
-  $scope.search = {
+  $scope.searchParams = {
     by: '',
     page: 1,
     term: '',
     sort: ''
   }
-  $scope.limit = 2;
+  $scope.limit = 10;
   $scope.total = 0;
   $scope.init = function () {
     // get total products
@@ -63,15 +63,15 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
   $scope.search = function () {
     var search_filter;
     // init data
-    $scope.search.sort = $scope.search.sort || 'ASC';
-    if (!$scope.search.by) {
+    $scope.searchParams.sort = $scope.searchParams.sort || 'ASC';
+    if (!$scope.searchParams.by) {
       search_filter = {
         by: 'name',
         page: 1,
         term: ''
       };
     } else {
-      search_filter = angular.copy($scope.search);
+      search_filter = angular.copy($scope.searchParams);
     }
     var searchTerm = {
       like: search_filter.term
@@ -100,10 +100,10 @@ pdadmin.controller('ProductCtrl', ['$scope', 'Notification', 'Product', '$uibMod
     var filter = {
       where: where,
       limit: $scope.limit,
-      order: 'name ' + $scope.search.sort,
+      order: 'name ' + $scope.searchParams.sort,
     }
-    if ($scope.search.page && $scope.search.page > 1) {
-      filter.skip = ($scope.search.page-1) * $scope.limit
+    if ($scope.searchParams.page && $scope.searchParams.page > 1) {
+      filter.skip = ($scope.searchParams.page-1) * $scope.limit
     }
     Product.find({
       filter: filter
